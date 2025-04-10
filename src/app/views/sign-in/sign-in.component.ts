@@ -1,9 +1,10 @@
+import { NgClass } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
@@ -11,6 +12,7 @@ export class SignInComponent {
   @Input() photo: string = "../../../../images/logo.png";
 
   private fb = inject(FormBuilder);
+  hidePassword = true;  // Control de visibilidad de la contraseña
 
   signInForm: FormGroup = this.fb.group(
     {
@@ -25,6 +27,10 @@ export class SignInComponent {
       ],
     },
   );
+
+  togglePassword(): void {
+    this.hidePassword = !this.hidePassword;  // Cambia la visibilidad de la contraseña
+  }
 
   onSubmit(): void {
     if (this.signInForm.valid) {
