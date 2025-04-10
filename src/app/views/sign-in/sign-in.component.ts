@@ -12,7 +12,7 @@ export class SignInComponent {
   @Input() photo: string = "../../../../images/logo.png";
 
   private fb = inject(FormBuilder);
-  hidePassword = true;  // Control de visibilidad de la contraseña
+  showPassword = true;
 
   signInForm: FormGroup = this.fb.group(
     {
@@ -29,7 +29,7 @@ export class SignInComponent {
   );
 
   togglePassword(): void {
-    this.hidePassword = !this.hidePassword;  // Cambia la visibilidad de la contraseña
+    this.showPassword = !this.showPassword;  // Cambia la visibilidad de la contraseña
   }
 
   onSubmit(): void {

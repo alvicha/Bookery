@@ -1,6 +1,109 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
+/* Fondo general de la app */
+html, body {
     margin: 0;
     padding: 0;
-    background-color: #0073B0;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0073B0, #00B4DB);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Contenedor centrado */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* Tarjeta de login */
+.login-card {
+    background-color: white;
+    padding: 2rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    position: relative;
+    margin: auto;
+}
+
+/* Logo */
+.photoLogo {
+    margin: 0 auto 1rem;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Título */
+.login-title {
+    font-size: 30px;
+    color: #ff8c00;
+    margin-bottom: 2rem;
+}
+
+/* Formulario */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Grupo de campos */
+.form-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: left;
+}
+
+/* Inputs */
+.form-control {
+    padding: 0.75rem 1rem;
+    padding-right: 2.5rem; /* Espacio para el ícono del ojo */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Icono de ojo */
+.form-group .bi {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Hint */
+.password-hint {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+/* Botón */
+.login-button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.login-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
