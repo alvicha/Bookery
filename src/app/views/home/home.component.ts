@@ -15,7 +15,7 @@ export class HomeComponent {
 
   books = [
     { title: 'El Hobbit', image: '../../../../images/hobbit.png', category: 'Fantasía' },
-    { title: '1984', image: '../../../../images/libro.png', category: 'Ciencia Ficción' },
+    { title: 'Cenicienta', image: '../../../../images/libro.png', category: 'Ciencia Ficción' },
     // ... más libros
   ];
 

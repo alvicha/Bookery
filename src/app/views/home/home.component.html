@@ -27,7 +27,11 @@
                 <img [src]="book.image" alt="{{ book.title }}" class="book-image">
                 <div class="card-body">
                     <h5 class="book-title mt-2">{{ book.title }}</h5>
-                    <button (click)="reserveBook(book)" class="btn btn-primary mt-2">Reservar</button>
+                    
+                    <div class="d-flex justify-content-end">
+                        <button (click)="reserveBook(book)"
+                            class="btn btn-primary mt-3">Reservar</button>
+                    </div>
                 </div>
             </div>
             }
