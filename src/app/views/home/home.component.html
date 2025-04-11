@@ -1,1 +1,41 @@
-<p>home works!</p>
+<div class="library-page d-flex">
+    <!-- Menú de categorías -->
+    <aside class="sidebar p-3">
+        <h3 class="mb-3">Categorías</h3>
+        <ul class="list-unstyled">
+            @for (category of categories; track category){
+            <li (click)="filterByCategory(category)" [class.active]="selectedCategory === category"
+                style="cursor: pointer;">
+                {{ category }}
+            </li>
+            }
+        </ul>
+    </aside>
+
+    <!-- Zona principal -->
+    <main class="main-content flex-grow-1 p-4">
+        <!-- Filtro de búsqueda -->
+        <div class="search-bar mb-4">
+            <input type="text" (input)="filterBooks()" placeholder="Buscar libros..." class="form-control">
+        </div>
+
+        <!-- Si hay libros filtrados -->
+        @if (filteredBooks.length > 0){
+        <div class="col-12 col-lg-6 col-md-4 d-flex flex-wrap gap-4">
+            @for (book of filteredBooks; track book){
+            <div class="card m-2 h-100" style="width: 16rem;">
+                <img [src]="book.image" alt="{{ book.title }}" class="book-image">
+                <div class="card-body">
+                    <h5 class="book-title mt-2">{{ book.title }}</h5>
+                    <button (click)="reserveBook(book)" class="btn btn-primary mt-2">Reservar</button>
+                </div>
+            </div>
+            }
+        </div>
+        } @else {
+        <div class="text-muted text-center mt-5">
+            No se encontraron libros con ese criterio.
+        </div>
+        }
+    </main>
+</div>
