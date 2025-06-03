@@ -29,16 +29,11 @@
     transition: color 0.3s ease-in-out;
 }
 
-.navbar-nav .nav-link:hover {
-    color: #ffc107;
-}
-
 /* Estilos para el botón de Iniciar Sesión */
 .navbar-nav .login-btn {
-    background-color: transparent;
-    border: 2px solid white;
+    background-color: #0073B0;
     color: white;
-    padding: 6px 15px;
+    padding: 7px 18px;
     border-radius: 20px;
     transition: all 0.3s ease-in-out;
     display: flex;
@@ -47,8 +42,7 @@
 }
 
 .navbar-nav .login-btn:hover {
-    background-color: #ffc107;
-    border-color: #ffc107;
+    background-color: #a8d0e7;
     color: black;
 }
 

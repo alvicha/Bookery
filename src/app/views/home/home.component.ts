@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,10 @@ export class HomeComponent {
   categories = ['Fantasía', 'Ciencia Ficción', 'Romance', 'Terror', 'Aventura'];
   selectedCategory = '';
   searchText = '';
+
+  constructor(
+    private router: Router,
+  ) {}
 
   books = [
     { title: 'El Hobbit', image: '../../../../images/hobbit.png', category: 'Fantasía' },
@@ -28,6 +33,10 @@ export class HomeComponent {
 
   filterBooks() {
     this.applyFilters();
+  }
+
+  showBookById() {
+    this.router.navigate(['/viewBook'])
   }
 
   applyFilters() {
