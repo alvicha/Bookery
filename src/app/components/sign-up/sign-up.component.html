@@ -1,0 +1,136 @@
+<form class="signup-form" (ngSubmit)="onSubmit()" [formGroup]="createUser" method="post">
+    <div class="form-input">
+        <label for="name" class="form-label text-left">Nombre</label>
+        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre">
+
+        @if (getControl('name')?.touched && getControl('name')?.errors?.['required']){
+        <small class="text-danger">
+            El nombre es obligatorio.
+        </small>
+        }
+
+        @if (getControl('name')?.touched && getControl('name')?.errors?.['minlength']){
+        <small class="text-danger">
+            El nombre debe tener al menos 2 caracteres.
+        </small>
+        }
+    </div>
+
+    <div class="form-input">
+        <label for="apellidos" class="form-label text-left">Apellidos</label>
+        <input type="text" placeholder="Apellidos" class="form-control" formControlName="surnames" id="apellidos">
+
+
+        @if (getControl('surnames')?.touched && getControl('surnames')?.errors?.['required']){
+        <small class="text-danger">
+            Los apellidos son obligatorios.
+        </small>
+        }
+
+        @if (getControl('surnames')?.touched && getControl('surnames')?.errors?.['minlength']){
+        <small class="text-danger">
+            Los apellidos deben tener al menos 2 caracteres.
+        </small>
+        }
+    </div>
+
+    <div class="form-input">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" placeholder="Correo electrónico" class="form-control" formControlName="email" id="email">
+
+        @if (getControl('email')?.touched && getControl('email')?.errors?.['required']){
+        <small class="text-danger">
+            El correo electrónico es obligatorio.
+        </small>
+        }
+
+        @if (getControl('email')?.touched && getControl('email')?.errors?.['email']){
+        <small class="text-danger">
+            Tiene que ser un email válido.
+        </small>
+        }
+    </div>
+
+    <div class="form-input">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" class="form-control" id="telefono" formControlName="phone" placeholder="Número de teléfono">
+
+        @if (getControl('phone')?.touched && getControl('phone')?.errors?.['required']){
+        <small class="text-danger">
+            Número de teléfono obligatorio.
+        </small>
+        }
+
+        @if (getControl('phone')?.touched && getControl('phone')?.errors?.['pattern']){
+        <small class="text-danger">
+            El número de teléfono tiene que tener 9 dígitos
+        </small>
+        }
+    </div>
+
+    <div class="form-input">
+        <label for="telefono">Fecha de nacimiento</label>
+        <input type="date" class="form-control p-3" id="fNacimiento" formControlName="dateBirth"
+            placeholder="Introduce fecha de nacimiento">
+
+        @if (getControl('dateBirth')?.touched && getControl('dateBirth')?.errors?.['required']){
+        <small class="text-danger">
+            La fecha de nacimiento es obligatoria
+        </small>
+        }
+    </div>
+
+    <div class="form-input">
+        <label for="password">Contraseña</label>
+        <input [type]="showPassword ? 'password' : 'text'" class="form-control pe-5" id="password"
+            placeholder="Contraseña" formControlName="password">
+
+        <span class="position-absolute" (click)="togglePassword()"
+            style="top: 55%; right: 0; transform: translateY(-50%); cursor: pointer;">
+            <i class="bi" style="font-size: 20px;" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+        </span>
+
+        @if (getControl('password')?.invalid && getControl('password')?.touched) {
+        @if (getControl('password')?.errors?.['required']) {
+        <small class="text-danger">
+            Contraseña obligatoria.
+        </small>
+        }
+        @if (getControl('password')?.errors?.['pattern']) {
+        <small class="text-danger">
+            Debe incluir mayúscula, minúscula y número.
+        </small>
+        }
+        }
+    </div>
+
+    <div class="form-input">
+        <label for="confirm-password">Confirmar Contraseña</label>
+        <input [type]="showPassword ? 'password' : 'text'" placeholder="Confirmar Contraseña" class="form-control"
+            id="confirmPassword" formControlName="confirmPassword">
+
+        <span class="position-absolute" (click)="togglePassword()"
+            style="top: 55%; right: 0; transform: translateY(-50%); cursor: pointer;">
+            <i class="bi" style="font-size: 20px;" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+        </span>
+        @if (createUser.hasError('passwordsDoNotMatch')){
+        <small class="text-danger">
+            Las contraseñas no coinciden
+        </small>
+        }
+    </div>
+
+    <div class="form-input">
+        <label for="rol">Rol de usuario</label>
+        <select class="form-select form-select-lg mt-2" style="font-size: 14px;"
+            aria-label="Menu desplegable rol de usuario" formControlName="rol">
+            <option selected value="invitado">Invitado</option>
+            <option value="usuario">Usuario</option>
+            <option value="admin">Adminisitrador</option>
+        </select>
+    </div>
+
+    <div class="buttons-login mt-2">
+        <button type="submit" class="login-button" [disabled]="!createUser.valid">Registrarme</button>
+    </div>
+</form>

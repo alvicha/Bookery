@@ -1,0 +1,55 @@
+<section class="record-section">
+    <div class="container">
+        <div class="title-container">
+            <h1 class="historial-title">Historial</h1>
+        </div>
+        <p class="description-historial">En esta sección se mostrará los libros que hemos visto anteriormente en caso de
+            que deseemos
+            volver a acceder a ellos</p>
+
+        <div class="card mb-5">
+            @if (recordsUser.length > 0) {
+            <p-carousel [value]="recordsUser" [numVisible]="1" [numScroll]="1" orientation="vertical"
+                verticalViewPortHeight="430px" emptyMessage="" contentClass="flex items-center justify-center">
+                <ng-template let-record pTemplate="item">
+                    <div class="container-record" (click)="goToBook(record.id)">
+                        <div class="d-flex justify-center items-center mb-4">
+                            <img [src]="record.imagen" [alt]="record.titulo" class="image-record" />
+                        </div>
+
+                        <div class="d-flex flex-column gap-3 align-items-center">
+                            <div class="d-flex flex-column align-items-center mb-3">
+                                <div class="title-recordBook">
+                                    <p>{{ record.titulo }}</p>
+                                </div>
+
+                                <div class="author-recordBook mb-3">
+                                    <p>{{ record.autor }}</p>
+                                </div>
+
+                                <div class="idioma-recordBook mb-3">
+                                    <p>{{ record.idioma }}</p>
+                                </div>
+                            </div>
+
+                            <div class="date-recordBook">
+                                <p>
+                                    <i class="bi bi-calendar me-1"></i>
+                                    Visto el {{ record.fechaString }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+            } @else {
+            <div class="message-no-records">
+                <h3>
+                    <i class="bi bi-cone-striped fs-4 me-2"></i>
+                    No hay libros en el historial
+                </h3>
+            </div>
+            }
+        </div>
+    </div>
+</section>

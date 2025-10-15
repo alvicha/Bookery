@@ -1,39 +1,150 @@
-/* Fondo general de la app */
-html, body {
-    margin: 0;
-    padding: 0;
+.header {
+    width: 100%;
     height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #0073B0, #00B4DB);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
-/* Contenedor centrado */
+.rounded-pill {
+    width: 100px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.navbar {
+    border-top: 3px solid #0073B0;
+    background-color: #f9f9f9;
+}
+
+.navbar-nav .nav-link {
+    color: #0073B0 !important;
+    margin-right: 20px !important;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    transition: color 0.3s ease-in-out !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107 !important;
+}
+
+.navbar-nav .login-btn:hover {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #0073B0 !important;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #0073B0;
+    font-weight: 500;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: #0073B0 !important;
+    background-color: #ffcc33 !important;
+}
+
+button.btn.dropdown-toggle.profile-button {
+    border: none;
+    background: transparent;
+}
+
+.cart-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.cart-button {
+    background: transparent;
+    border: none;
+    color: #0073B0;
+    cursor: pointer;
+}
+
+.cart-container .cart-badge {
+    position: absolute;
+    background-color: red;
+    color: #ffffff;
+    top: -5px;
+    right: -12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 40%;
+}
+
+.offcanvas-title {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.profile-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #0073B0;
+}
+
+.login-btn {
+    background-color: #0073B0;
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: none;
+}
+
 .login-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 50px;
 }
 
-/* Tarjeta de login */
 .login-card {
-    background-color: white;
-    padding: 2rem 2rem;
-    border-radius: 16px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     width: 100%;
-    max-width: 420px;
-    text-align: center;
-    position: relative;
-    margin: auto;
+    max-width: 400px;
+}
+
+.login-tabs {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #0073B0;
+}
+
+.login-tabs .tab {
+    flex: 1;
+    padding: 0.75rem 0;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.login-tabs .tab.active {
+    color: #2563eb;
+    border-bottom: 3px solid #2563eb;
 }
 
 /* Logo */
 .photoLogo {
-    margin: 0 auto 1rem;
     max-width: 100%;
     height: auto;
 }
@@ -52,30 +163,32 @@ html, body {
     gap: 1.25rem;
 }
 
-/* Grupo de campos */
-.form-group {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    text-align: left;
+/* Inputs */
+.form-input input {
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid #dcdfe3;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-top: 8px;
 }
 
-/* Inputs */
-.form-control {
-    padding: 0.75rem 1rem;
-    padding-right: 2.5rem; /* Espacio para el ícono del ojo */
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
+.form-input {
+    position: relative;
 }
 
 /* Icono de ojo */
-.form-group .bi {
+.form-input .bi {
     position: absolute;
-    top: 50%;
     right: 1rem;
-    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.form-floating .bi {
+    position: absolute;
+    right: 1rem;
     cursor: pointer;
     font-size: 1.1rem;
     color: #666;
@@ -87,23 +200,394 @@ html, body {
     color: #999;
 }
 
-/* Botón */
 .login-button {
-    background-color: #007bff;
-    color: white;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #ffffff;
     padding: 0.75rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.2s;
+    font-weight: 600;
 }
 
 .login-button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    transform: translateY(-2px);
 }
 
 .login-button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+}
+
+.forgot-password {
+    color: #0073B0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.forgot-password:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.register-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.register-link a {
+    color: #0073B0;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 10px;
+    background: #ffffff;
+    width: 100%;
+    max-width: 400px;
+}
+
+.signup-form input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+.buttons-login button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #ffffff;
+    padding: 0.75rem;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.buttons-login button:hover {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    transform: translateY(-2px);
+}
+
+.btn-more {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    padding: 8px 14px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 700;
+    border: none;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.btn-more:hover {
+    transform: scale(1.05);
+}
+
+.container-image {
+    height: 18rem;
+    overflow: hidden;
+}
+
+.books-container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.books-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.3rem;
+    margin: 0 auto;
+    width: 53%;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.book-info-container {
+    display: flex;
+    gap: 10px;
+    padding: 3rem;
+}
+
+.infoBook-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoBook-image {
+    width: 350px;
+    height: 550px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-details-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+}
+
+.infoBook-title {
+    font-size: 35px;
+    font-weight: bold;
+    color: #333;
+}
+
+.infoBook-author {
+    font-size: 1.2rem;
+    color: #555;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.infoBook-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+.infoBook-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(3, 3, 3, 0.2);
+    background-color: rgb(243, 251, 251);
+    width: 20%;
+    height: fit-content;
+    box-sizing: border-box;
+    padding: 30px;
+    gap: 15px;
+}
+
+.buy-button {
+    background-color: #0073B0;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.buy-buttonAdded {
+    background-color: #16a34a;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.buy-buttonAdded:hover {
+    transform: translateY(-3px) !important;
+}
+
+.buy-button:hover {
+    transform: translateY(-3px) !important;
+}
+
+.price-text {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+.details-title {
+    font-size: 25px;
+    margin-bottom: 1.5rem;
+    margin-top: 20px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.3rem;
+    /* 👈 espacio extra entre el texto y el borde */
+}
+
+.description-title {
+    font-size: 25px;
+    margin-bottom: 1.3rem;
+    margin-top: 20px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.3rem;
+}
+
+.search-bar {
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    border-bottom: 3px solid #0073B0;
+    padding-bottom: 30px;
+}
+
+.search-bar input {
+    padding: 10px 20px;
+    transition: box-shadow 0.3s ease;
+    border-radius: 3px;
+}
+
+.profile-card {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.3s;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid #0073B0;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+}
+
+.profile-name h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #0073B0;
+    text-align: center;
+}
+
+.profile-role {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.profile-details h3 {
+    margin-bottom: 50px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.profile-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-details li {
+    margin-bottom: 18px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: #f8f9fa;
+}
+
+.btn-edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.btn-edit button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #ffffff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    width: 30%;
+    text-transform: uppercase;
+}
+
+.btn-edit button:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100vw;
+        /* Ocupar el 100% del ancho de la pantalla */
+        background-color: #0c0c0c;
+        z-index: 1000;
+        /* Para que quede por encima de otros elementos */
+
+    }
+
+    .navbar-nav {
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        padding: 10px 0;
+    }
 }

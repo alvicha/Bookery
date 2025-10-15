@@ -1,35 +1,53 @@
-<div class="login-container">
-    <div class="login-card">
-        <img [src]="photo" class="photoLogo" width="190" height="160" alt="Foto de perfil">
-        <h1 class="login-title mb-5 mt-2 fw-bold">INICIAR SESIÓN</h1>
+<div>
+    <div class="login-content">
         <form (ngSubmit)="onSubmit()" class="login-form" [formGroup]="signInForm">
-            <div class="form-group">
-                <label for="username" class="mb-2">Nombre de usuario</label>
-                <input type="text" formControlName="email" placeholder="Introduce nombre de usuario"
-                    class="form-control">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="Introduce correo electrónico"
+                    formControlName="email">
+                <label for="floatingInput">Correo electrónico</label>
+
+                @if (getControl('email')?.touched && getControl('email')?.errors?.['required']){
+                <small class="text-danger">
+                    El correo electrónico es obligatorio.
+                </small>
+                }
+
+                @if (getControl('email')?.touched && getControl('email')?.errors?.['email']){
+                <small class="text-danger">
+                    Tiene que ser un email válido.
+                </small>
+                }
             </div>
 
-            <div class="form-group position-relative">
+            <div class="form-floating">
+                <input [type]="showPassword ? 'password' : 'text'" class="form-control" id="floatingPassword"
+                    formControlName="password" placeholder="Introduce la contraseña">
                 <label for="password">Contraseña</label>
-                <input [type]="showPassword ? 'password' : 'text'" id="password" formControlName="password"
-                    placeholder="Introduce la contraseña" class="form-control">
 
-                <span class="position-absolute"
-                    (click)="togglePassword()"
-                    style="top: 70%; right: 15px; transform: translateY(-50%); cursor: pointer;">
-                    <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+                <span class="position-absolute" (click)="togglePassword()"
+                    style="top: 33%; right: 5px; transform: translateY(-50%); cursor: pointer;">
+                    <i class="bi" style="font-size: 20px;" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
                 </span>
+
+                @if (getControl('password')?.invalid && getControl('password')?.touched) {
+                @if (getControl('password')?.errors?.['required']) {
+                <small class="text-danger">
+                    Contraseña obligatoria.
+                </small>
+                }
+                }
             </div>
 
-            <div class="form-group">
-                <label>
-                    <input type="checkbox"> Recordar Contraseña
-                </label>
+            <div class="buttons-login">
+                <button type="submit" class="login-button" [disabled]="!signInForm.valid">Iniciar
+                    sesión</button>
             </div>
-
-            <button type="submit" class="login-button rounded-pill" [disabled]="!signInForm.valid">
-                INICIAR SESIÓN
-            </button>
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
         </form>
+    </div>
+
+    <div class="register-link">
+        <span>¿No tienes una cuenta?</span>
+        <a (click)="onSignUp()" class="ms-1">Regístrate</a>
     </div>
 </div>

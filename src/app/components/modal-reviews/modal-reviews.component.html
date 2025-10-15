@@ -1,0 +1,44 @@
+<div>
+  <div [ngClass]="modalReviews" class="modal-overlay">
+    <div class="modal-content">
+      <span (click)="onClose()" class="close-button">&times;</span>
+
+      <h3 class="review-title mt-2">
+        <i class="bi bi-stars me-1"></i>
+        Valoraciones
+      </h3>
+      <p class="text-center fw-bold mt-3">
+        ¡Valora del 1 al 5, qué te ha parecido y si ha sido de tu agrado!
+      </p>
+
+      <form (ngSubmit)="onSubmit()" class="opinion-form" [formGroup]="opinionForm">
+        <div class="form-input">
+          <div class="d-flex flex-column justify-center items-center gap-2">
+            <div class="container-stairs">
+              <p-rating formControlName="rating"></p-rating>
+              @if (getControl('rating')?.invalid && (getControl('rating')?.touched)) {
+              <small class="text-danger">Calificación requerida</small>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="form-input">
+          <label for="comment">Comentario</label>
+          <textarea class="form-control" id="comment" formControlName="comment" rows="4"
+            placeholder="Escribe tu opinión..."></textarea>
+
+          @if (getControl('comment')?.touched && getControl('comment')?.errors?.['required']) {
+          <small class="text-danger">Comentarios obligatorios</small>
+          }
+        </div>
+
+        <div class="buttons-login mt-2">
+          <button type="submit">
+            Insertar Opinión
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

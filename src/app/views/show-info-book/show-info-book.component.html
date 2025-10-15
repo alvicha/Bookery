@@ -1,0 +1,166 @@
+<section>
+    @if (book)
+    {
+    <div class="book-info-container">
+        <div class="infoBook-image-container">
+            <img [src]="book.imagen" alt="Portada del libro" class="infoBook-image" />
+
+        </div>
+        <div class="book-details-container">
+            <h1 class="infoBook-title mb-4">{{ book.titulo }}</h1>
+            <h2 class="infoBook-author mb-5">{{ book.autor }}</h2>
+
+            <div class="infoBook-details">
+                <h2 class="details-title">Ficha técnica</h2>
+                <p>
+                    Editorial: {{ book.editorial }}
+                </p>
+                <p>
+                    Año de publicación: {{ book.anyo_publicacion }}
+                </p>
+                <p>
+                    ISBN: {{ book.isbn }}
+                </p>
+                <p>
+                    Páginas: {{ book.num_paginas }}
+                </p>
+                <p>
+                    Idioma: {{ book.idioma }}
+                </p>
+            </div>
+        </div>
+
+        <div class="infoBook-actions ms-5">
+            <i class="bi bi-book" style="font-size: 2rem; margin-bottom: 4px;"></i>
+            <p class="text-center mb-1">Reserva ahora este producto y disfrutarás de una lectura apasionante y agradable
+                por solo</p>
+            <p class="price-text">
+                {{ book.precio }} €
+            </p>
+            <button [ngClass]="bookAdded ? 'buy-buttonAdded' : 'buy-button'" (click)="onAddToCart()">
+                @if (bookAdded){
+                <i class="bi bi-check2-all me-2"></i>
+                } @else {
+                <i class="bi bi-bag me-2"></i>
+                }
+                {{ bookAdded ? 'Añadido a cesta' : 'Añadir a la cesta' }}
+            </button>
+        </div>
+    </div>
+
+    <div class="p-5 mb-5">
+        <h2 class="description-title">Descripción del producto</h2>
+        <p>{{ book.descripcion }}</p>
+    </div>
+
+
+    <div>
+        <h2 class="valorations-title">Valoraciones</h2>
+        <p class="description-valorations">Aqui tendremos los comentarios de los clientes sobre qué les ha parecido el
+            producto</p>
+
+        <div class="container-reviews">
+            <div class="card-reviews">
+                <h4 class="text-center fs-3 mt-2">Valoración media</h4>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="average-rating">
+                        <h2>{{averageRating}}</h2>
+                    </div>
+                    <div class="stars">
+                        @for (star of [1, 2, 3, 4, 5]; track star) {
+                        <i class="bi"
+                            [ngClass]="star <= averageRating ? 'bi-star-fill text-warning' : 'bi-star text-muted'">
+                        </i>
+                        }
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <h5 class="text-comments">¿Quieres añadir una opinión del libro?</h5>
+                    <p class="description-comments">¡Anímate y comparte tu experiencia con otros lectores!</p>
+                </div>
+
+                <div class="container-button">
+                    <button class="button-review" (click)="onOpenReviews()">
+                        <i class="bi bi-chat-dots me-1"></i> Crear opinión
+                    </button>
+                </div>
+            </div>
+
+            <div class="container-opinion">
+                <p-tabs [value]="tabs[0].value">
+                    <p-tablist>
+                        @for (tab of tabs; track tab.value) {
+                        <p-tab [value]="tab.value">{{ tab.title }}</p-tab>
+                        }
+                    </p-tablist>
+                    <p-tabpanels>
+                        @if (listReview.length > 0) {
+                        @for (tab of tabs; track tab.value) {
+                        <p-tabpanel [value]="tab.value">
+                            @if (tab.value === 0) {
+                            @for (review of listReview.slice(0, this.visibleReviews); track $index) {
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <h5 class="card-title">{{ review.usuarioNombre }} {{ review.usuarioApellidos }}</h5>
+                                    <small class="text-muted">{{review.fechaString}}</small>
+                                </div>
+                                <div>
+                                    @for (star of [1,2,3,4,5]; track star) {
+                                    <i class="bi"
+                                        [ngClass]="star <= review.puntuacion ? 'bi-star-fill text-warning' : 'bi-star text-muted'"></i>
+                                    }
+                                </div>
+                                <p class="card-text text-muted">{{ review.comentarios }}</p>
+                            </div>
+                            }
+
+                            @if (visibleReviews < listReview.length) { <div class="col-12 text-center">
+                                <button class="btn btn-more" (click)="showMoreProjects()">
+                                    Ver más opiniones
+                                </button>
+            </div>
+            }
+            } @else if (tab.value === 1) {
+            @for (review of listReview.slice(0, this.visibleReviews); track $index) {
+            @if (review.puntuacion > 4) {
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <h5 class="card-title">{{ review.usuarioNombre }} {{ review.usuarioApellidos }}</h5>
+                    <small class="text-muted">{{review.fechaString}}</small>
+                </div>
+                <div>
+                    @for (star of [1,2,3,4,5]; track star) {
+                    <i class="bi"
+                        [ngClass]="star <= review.puntuacion ? 'bi-star-fill text-warning' : 'bi-star text-muted'"></i>
+                    }
+                </div>
+                <p class="card-text text-muted">{{ review.comentarios }}</p>
+            </div>
+            }
+            }
+
+            @if (visibleReviews < listReview.length) { <div class="col-12 text-center">
+                <button class="btn btn-more" (click)="showMoreProjects()">
+                    Ver más opiniones
+                </button>
+        </div>
+        }
+        }
+        </p-tabpanel>
+        }
+        } @else {
+        <div class="no-reviews" role="alert">
+            No hay reseñas aún. ¡Sé el primero en opinar!
+        </div>
+        }
+        </p-tabpanels>
+        </p-tabs>
+    </div>
+    </div>
+    </div>
+    }
+
+    <app-modal [response]="responseBooking" [book]="book" [modal]="modal" (closeModal)="onClose()"></app-modal>
+    <app-modal-reviews [book]="book" [modalReviews]="modalReviews" (closeModal)="onCloseReviews()"></app-modal-reviews>
+</section>

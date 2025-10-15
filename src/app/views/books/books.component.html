@@ -1,0 +1,33 @@
+<section id="libros" class="books-container">
+    <div class="d-flex flex-column text-white bg-dark"
+        style="width: 270px; min-height: 100vh; background-color: #f9f9f9;">
+        <h3 class="mb-3 pt-5">Categorías</h3>
+        <hr class="border-light">
+
+        <ul class="nav nav-pills flex-column mb-auto ps-3">
+            @for (category of categories; track category; let i = $index;) {
+            <li class="nav-item mb-1">
+                <a class="nav-link" (click)="filterBooksByCategory(category.id)" style="cursor: pointer;">
+                    {{ category.nombre }}
+                </a>
+            </li>
+            }
+        </ul>
+    </div>
+
+
+    @if (filteredBooks.length > 0){
+    <div class="books-grid">
+        @for (book of filteredBooks; track book; let i = $index){
+        <app-card [book]="book"></app-card>
+        }
+    </div>
+    } @else {
+    <div class="no-books-message">
+        <h2>
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            No se encontraron libros en esta categoría.
+        </h2>
+    </div>
+    }
+</section>

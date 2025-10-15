@@ -1,0 +1,42 @@
+<div [ngClass]="modal" class="modal-overlay">
+    <div class="modal-content">
+        <span (click)="onClose()" class="close-button">&times;</span>
+        
+        @if (books.length > 0) {
+        <h3 class="confirm-title mt-2">
+            <i class="bi bi-bookmark-check"></i>
+            Confirmación Reserva
+        </h3>
+
+        <form class="booking-form" (ngSubmit)="onSubmit()" [formGroup]="confirmBookingForm">
+            <div class="form-input">
+                <label for="date-booking">Fecha de reserva</label>
+                <input type="date" class="form-control p-3" id="date" formControlName="dateBooking" required>
+
+                @if (getControl('dateBooking')?.touched && getControl('dateBooking')?.errors?.['required']){
+                <small class="text-danger">
+                    La fecha de reserva es obligatoria
+                </small>
+                }
+            </div>
+
+            <div class="form-input">
+                <label for="time">Hora de reserva</label>
+                <input type="time" class="form-control p-3" id="time" formControlName="time">
+            </div>
+
+            <div class="buttons-login mt-2">
+                <button type="submit" [disabled]="!confirmBookingForm.valid">
+                    Confirmar Reserva
+                </button>
+            </div>
+        </form>
+        } @else {
+        <div class="empty-cart-message text-center p-3">
+            <i class="bi bi-cart-x fs-1"></i>
+            <h4>No se puede realizar la reserva</h4>
+            <p class="text-muted">Debes añadir libros a la cesta antes de confirmar la reserva.</p>
+        </div>
+        }
+    </div>
+</div>

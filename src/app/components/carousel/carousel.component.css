@@ -1,0 +1,12 @@
+.imagen-proyecto {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1) grayscale(100);
+}

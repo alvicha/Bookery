@@ -1,45 +1,54 @@
 <div class="library-page d-flex">
-    <!-- Menú de categorías -->
-    <aside class="sidebar p-3">
-        <h3 class="mb-3">Categorías</h3>
-        <ul class="list-unstyled">
-            @for (category of categories; track category){
-            <li (click)="filterByCategory(category)" [class.active]="selectedCategory === category"
-                style="cursor: pointer;">
-                {{ category }}
-            </li>
-            }
-        </ul>
-    </aside>
+    <main class="main-content">
+        <app-carousel></app-carousel>
 
-    <!-- Zona principal -->
-    <main class="main-content flex-grow-1 p-4">
-        <!-- Filtro de búsqueda -->
-        <div class="search-bar mb-4">
-            <input type="text" (input)="filterBooks()" placeholder="Buscar libros..." class="form-control">
+        <div style="text-align: center;">
+            <a href="#aboutMe" class="scroll-down-button">
+                @if (testIconArrow) {
+                <i class="bi bi-arrow-down" style="font-size: 2rem;"></i>
+                } @else {
+                <i class="bi bi-arrow-up" style="font-size: 2rem;"></i>
+                }
+            </a>
         </div>
 
-        <!-- Si hay libros filtrados -->
-        @if (filteredBooks.length > 0){
-        <div class="col-12 col-lg-6 col-md-4 d-flex flex-wrap gap-4">
-            @for (book of filteredBooks; track book){
-            <div class="card m-2 h-100" style="width: 16rem;">
-                <img [src]="book.image" alt="{{ book.title }}" class="book-image">
-                <div class="card-body">
-                    <h5 class="book-title mt-2">{{ book.title }}</h5>
-                    
-                    <div class="d-flex justify-content-end">
-                        <button (click)="reserveBook(book)"
-                            class="btn btn-primary mt-3">Reservar</button>
+        <section id="aboutMe" class="about-me-section py-5">
+            <div class="container-fluid">
+                <h1 class="about-title mt-3 mt-lg-5 mt-md-5 mt-sm-5">EN QUE CONSISTE</h1>
+
+                <div class="row align-items-center mb-4">
+                    <div class="col-12 col-lg-6 col-md-6 d-flex justify-content-center">
+                        <div class="about-image-wrapper">
+                            <img src="images/concepto-libro.jpg" alt="Imagen perfil"
+                                class="about-image img-fluid rounded" />
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 mt-5 w-40">
+                        <p class="about-text">
+                            En nuestra librería nos dedicamos a compartir la magia de los libros y a brindarte una
+                            experiencia única desde el primer momento. Queremos que te sientas a gusto, disfrutes
+                            recorriendo nuestras estanterías y vivas la auténtica experiencia de lectura.
+
+                            <br /><br />
+
+                            Encuentra y reserva tus libros de forma rápida y sencilla en nuestra tienda, y déjate
+                            acompañar por nuestro equipo de libreros, siempre dispuestos a recomendarte nuevas historias
+                            y autores. Trabajamos con editoriales y títulos de calidad para que tengas lo mejor en tus
+                            manos.
+
+                            <br /><br />
+
+                            Desde 2005 ayudamos a lectores como tú a descubrir, aprender y soñar a través de
+                            la lectura. ¿Te animas a visitarnos?
+                        </p>
+
+                        <div class="mt-4">
+                            <button class="visit-button" (click)="onClick()">DESCUBRE MÁS</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            }
-        </div>
-        } @else {
-        <div class="text-muted text-center mt-5">
-            No se encontraron libros con ese criterio.
-        </div>
-        }
+        </section>
     </main>
 </div>

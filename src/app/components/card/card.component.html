@@ -1,0 +1,22 @@
+<div class="book-card h-100">
+    <div class="container-image">
+        <img [src]="book.imagen" [alt]="book.titulo" class="book-image">
+    </div>
+    <div class="card-body">
+        <h5 class="book-title mt-4">{{ book.titulo }}</h5>
+        <h6 class="book-author mt-3">{{ book.autor }}</h6>
+
+        <div class="d-flex justify-content-around gap-2 align-items-center mt-4">
+            <button class="btn-more" (click)="onClickBookSelected()">
+                <i class="bi bi-plus" style="font-size: 25px;"></i>
+                VER MÁS
+            </button>
+
+            <div class="buttons-container">
+                <button class="btn-favorite" (click)="onClickFavouriteBook(book.id)">
+                    <i [ngClass]="!testHearts ? 'bi bi-heart' : 'bi bi-heart-fill'"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

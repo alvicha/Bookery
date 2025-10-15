@@ -1,5 +1,9 @@
+@if (isUserRol === "invitado"){
 <app-header></app-header>
-<router-outlet />
-@if(showFooter){
-<app-footer></app-footer>
+} @else if (isUserRol === "usuario"){
+<app-header-user></app-header-user>
+} @else if (isUserRol === "admin"){
+<app-header-admin></app-header-admin>
 }
+<router-outlet />
+<app-footer></app-footer>

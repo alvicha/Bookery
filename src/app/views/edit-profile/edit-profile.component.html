@@ -1,0 +1,130 @@
+<div class="edit-profile-container">
+    @if (userData) {
+    <div class="edit-profile-card">
+        <h2>Edición perfil</h2>
+
+        <form [formGroup]="editProfile" class="editUser-form">
+            <div class="profile-image-edit">
+                <div class="current-image">
+                    <i class="bi bi-person-circle" style="font-size: 100px;"></i>
+                </div>
+
+                <div class="image-upload text-center">
+                    <label for="file-input" class="upload-btn">
+                        <i class="bi bi-camera me-1"></i> Cambiar foto
+                    </label>
+                    <input id="file-input" type="file" accept="image/jpeg, image/png">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="name" formControlName="nombre"
+                    [class.is-invalid]="getControl('nombre')?.invalid && (getControl('nombre')?.dirty || getControl('nombre')?.touched)">
+
+                @if (getControl('nombre')?.touched && getControl('nombre')?.errors?.['required']) {
+                <small class="text-danger">
+                    Debe incluir mayúscula, minúscula y número.
+                </small>
+                }
+
+                @if (getControl('nombre')?.touched && getControl('nombre')?.errors?.['minlength']){
+                <small class="text-danger">
+                    El nombre debe tener al menos 2 caracteres.
+                </small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" formControlName="apellidos"
+                    [class.is-invalid]="getControl('apellidos')?.invalid  && getControl('apellidos')?.touched">
+
+                @if (getControl('apellidos')?.touched && getControl('apellidos')?.errors?.['required']){
+                <small class="text-danger">
+                    Los apellidos son obligatorios.
+                </small>
+                }
+
+                @if (getControl('apellidos')?.touched && getControl('apellidos')?.errors?.['minlength']){
+                <small class="text-danger">
+                    Los apellidos deben tener al menos 2 caracteres.
+                </small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" placeholder="Correo electrónico" class="form-control" formControlName="email"
+                    id="email" [class.is-invalid]="getControl('email')?.invalid  && getControl('namemaile')?.touched">
+
+                @if (getControl('email')?.touched && getControl('email')?.errors?.['required']){
+                <small class="text-danger">
+                    El correo electrónico es obligatorio.
+                </small>
+                }
+
+                @if (getControl('email')?.touched && getControl('email')?.errors?.['email']){
+                <small class="text-danger">
+                    Tiene que ser un email válido.
+                </small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" formControlName="telefono"
+                    [class.is-invalid]="getControl('telefono')?.invalid  && getControl('telefono')?.touched">
+
+                @if (getControl('telefono')?.touched && getControl('telefono')?.errors?.['required']){
+                <small class="text-danger">
+                    Número de teléfono obligatorio.
+                </small>
+                }
+
+                @if (getControl('telefono')?.touched && getControl('telefono')?.errors?.['pattern']){
+                <small class="text-danger">
+                    El número de teléfono tiene que tener 9 dígitos
+                </small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Fecha de nacimiento</label>
+                <input type="date" class="form-control p-3" id="fecha_nacimiento" formControlName="fecha_nacimiento"
+                    placeholder="Introduce fecha de nacimiento"
+                    [class.is-invalid]="getControl('fecha_nacimiento')?.invalid  && getControl('fecha_nacimiento')?.touched">
+
+                @if (getControl('fecha_nacimiento')?.touched && getControl('fecha_nacimiento')?.errors?.['required']){
+                <small class="text-danger">
+                    La fecha de nacimiento es obligatoria
+                </small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="rol">Rol</label>
+                <input type="text" class="form-control readonly-field" id="rol" [value]="userData.rol" readonly>
+            </div>
+
+            <div class="profile-actions">
+                <button type="button" class="animated-button" (click)="saveChangesProfile()"
+                    [disabled]="loading">
+                    @if (loading) {
+                    <span class="spinner-border spinner-border-sm me-2"></span>
+                    }
+                    <i class="bi bi-check-circle me-2"></i>Guardar cambios
+                </button>
+                <button type="button" class="btn btn-secondary animated-button" (click)="cancelChanges()"
+                    [disabled]="loading">
+                    <i class="bi bi-x-circle me-2"></i>Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+    } @else {
+    <div class="alert alert-warning">
+        No se encontraron datos del usuario. <a routerLink="/signIn">Iniciar sesión</a>
+    </div>
+    }
+</div>

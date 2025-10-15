@@ -1,0 +1,54 @@
+<section class="form-section" aria-labelledby="contacto-titulo">
+    <div class="card-container">
+        <h1 id=" contacto-titulo" class="text-center mb-5 mt-3 text-primary">Contacto</h1>
+        <p id="form-descripcion" class="visually-hidden">Formulario para contactar conmigo</p>
+
+        <form>
+            <div class="row mb-4">
+                <div class="col-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control shadow-sm" id="nombre" name="nombre"
+                        placeholder="Introduce tu nombre" required>
+                </div>
+                <div class="col-6">
+                    <label for="apellidos" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control shadow-sm" id="apellidos" name="apellidos"
+                        placeholder="Introduce tus apellidos" required>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-5">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control shadow-sm" id="telefono" name="telefono"
+                        placeholder="Número de teléfono">
+                </div>
+                <div class="col-7">
+                    <label for="correo" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control shadow-sm" id="correo" name="correo"
+                        placeholder="tu@correo.com" required>
+                </div>
+            </div>
+
+            <!-- Comentarios -->
+            <div class="mb-3">
+                <label for="comentarios" class="form-label">Comentarios</label>
+                <textarea id="comentarios" rows="4" class="form-control shadow-sm"
+                    placeholder="Escribe tus dudas o comentarios..."></textarea>
+            </div>
+
+            <!-- Términos -->
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="terminos" required>
+                <label class="form-check-label" for="terminos">Acepto los términos y condiciones</label>
+            </div>
+
+            <!-- Botón -->
+            <div class="buttons-login mt-4">
+                <button type="submit" class="btn btn-primary">
+                    Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+</section>

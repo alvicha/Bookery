@@ -1,0 +1,47 @@
+.form-section {
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.card-container {
+    width: 50%;
+    max-width: 750px;
+    padding: 50px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+h1 {
+    font-weight: 700;
+    color: #0d6efd;
+    text-transform: uppercase;
+    font-size: 35px;
+}
+
+input.form-control,
+textarea.form-control,
+select.form-select {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease-in-out;
+}
+
+input.form-control:focus,
+textarea.form-control:focus,
+select.form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.2);
+    outline: none;
+}
+
+/* Form-check */
+.form-check-label {
+    font-size: 0.9rem;
+}

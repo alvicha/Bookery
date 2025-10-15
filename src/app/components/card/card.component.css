@@ -1,0 +1,54 @@
+.book-card {
+    transition: transform 0.2s ease;
+    border: none;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.book-card:hover {
+    transform: scale(1.03);
+}
+
+.book-title {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: left;
+}
+
+.book-author {
+    font-size: 15px;
+    color: #555;
+    text-decoration: none;
+    text-align: left;
+}
+
+.book-image {
+    height: 100%;
+    width: 100%;
+}
+
+.buttons-container {
+    margin-bottom: 0;
+}
+
+.btn-favorite {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 19px;
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-favorite:hover .bi-heart {
+    color: #ff4d4d;
+    transition: color 0.3s ease;
+}
+
+.btn-favorite:focus .bi-heart-fill {
+    color: #ff1a1a;
+    transition: color 0.3s ease;
+}

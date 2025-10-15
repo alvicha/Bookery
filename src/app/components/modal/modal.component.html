@@ -1,0 +1,39 @@
+<!-- Modal -->
+<div [ngClass]="modal" class="modal-overlay">
+    @if (book){
+    <div class="modal-content">
+        <span (click)="onClose()" class="close-button">&times;</span>
+        <div class="title-info">
+            <h3 class="added-message">
+                <i class="bi bi-check-lg fs-4 me-2"></i>
+                Libro añadido a mi cesta
+            </h3>
+        </div>
+        <div class="body-modal">
+            <div class="container-first">
+                <div class="book-image">
+                    <img [src]="book.imagen" alt="Imagen del libro" />
+                </div>
+
+                <div class="book-info">
+                    <h2 class="book-title">{{book.titulo}}</h2>
+                    <p class="book-author">{{book.autor}}</p>
+                    <p class="book-price">{{book.precio.toFixed(2)}} €</p>
+                </div>
+            </div>
+
+            <div class="buttons-modal">
+                <button (click)="onClose()">
+                    <i class="bi bi-bag-plus me-2"></i>
+                    Seguir comprando
+                </button>
+
+                <button>
+                    <i class="bi bi-cart me-2"></i>
+                    Ir a mi cesta
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

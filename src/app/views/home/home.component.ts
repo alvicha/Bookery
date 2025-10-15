@@ -1,43 +1,18 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
+import { CarouselComponent } from "../../components/carousel/carousel.component";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [CarouselComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  public constructor(private router: Router) { }
+  testIconArrow: boolean = true;
 
-  categories = ['Fantasía', 'Ciencia Ficción', 'Romance', 'Terror', 'Aventura'];
-  selectedCategory = '';
-  searchText = '';
-
-  books = [
-    { title: 'El Hobbit', image: '../../../../images/hobbit.png', category: 'Fantasía' },
-    { title: 'Cenicienta', image: '../../../../images/libro.png', category: 'Ciencia Ficción' },
-    // ... más libros
-  ];
-
-  filteredBooks = [...this.books];
-
-  filterByCategory(category: string) {
-    this.selectedCategory = category;
-    this.applyFilters();
-  }
-
-  filterBooks() {
-    this.applyFilters();
-  }
-
-  applyFilters() {
-    this.filteredBooks = this.books.filter(book =>
-      (!this.selectedCategory || book.category === this.selectedCategory) &&
-      book.title.toLowerCase().includes(this.searchText.toLowerCase())
-    );
-  }
-
-  reserveBook(book: any) {
-    alert(`Reservaste: ${book.title}`);
+  onClick() {
+    this.router.navigate(['/view-about']);
   }
 }

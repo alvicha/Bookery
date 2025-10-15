@@ -1,0 +1,124 @@
+/* Fondo oscuro del modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+    max-width: 490px;
+    padding: 25px;
+}
+
+.opinion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 13px;
+    background: #ffffff;
+    width: 100%;
+    max-width: 450px;
+}
+
+.review-title {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1rem;
+    color: darkgreen;
+}
+
+.form-input label {
+    font-weight: 500;
+    display: block;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.form-input textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+/* Botón cerrar */
+.close-button {
+    position: absolute;
+    top: 0.6rem;
+    right: 1.2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.container-stairs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 15px;
+}
+
+.buttons-login button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #ffffff;
+    padding: 0.75rem;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.buttons-login button:hover {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    transform: translateY(-2px);
+}
+
+.buttons-login button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.container-stairs ::ng-deep .p-rating-icon {
+    transform: scale(1.5);
+    /* 3x el tamaño original */
+    color: #FFD700;
+    /* amarillo dorado */
+    transition: transform 0.2s ease-in-out;
+    margin-right: 10px;
+}
+
+.container-stairs ::ng-deep .p-rating-icon.pi-star:hover {
+    color: #FFA500;
+}
+
+/* Color de estrellas seleccionadas */
+.container-stairs ::ng-deep .p-rating-icon.pi-star-fill {
+    color: #FFD700;
+}

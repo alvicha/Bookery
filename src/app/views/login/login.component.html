@@ -1,0 +1,15 @@
+<div class="login-container">
+    <div class="login-card mb-5">
+        <div class="login-tabs">
+            <button [ngClass]="testSignIn ? 'tab active' : 'tab'" (click)="onSignIn()"> Iniciar
+                sesión</button>
+            <button [ngClass]="testSignIn ? 'tab' : 'tab active'" (click)="onSignUp()">Registrarse</button>
+        </div>
+
+        @if (testSignIn){
+        <app-sign-in (showSignUp)="onShowSignUp()"></app-sign-in>
+        } @else {
+        <app-sign-up (showSignIn)="onTestSignIn()" ></app-sign-up>
+        }
+    </div>
+</div>
