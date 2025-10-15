@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, mergeMap, Observable, tap, throwError } from 'rxjs';
 import { Books } from '../models/books.interface';
 import { UserInfo, Users } from '../models/users.interface';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class ResponseService {
   urlGetRecordByUser: string = "http://localhost:8000/api/getRecordByUser";
   urlLikeBook: string = "http://localhost:8000/api/like/createLike";
   urlGetLikeBooks: string = "http://localhost:8000/api/like/getFavourites";
+  urlDeleteLikeBook: string = "http://localhost:8000/api/like/deleteLike";
 
   getResponseBooks(url: string): Observable<any> {
     return this.http.get<Books>(url);
@@ -178,6 +180,17 @@ export class ResponseService {
 
   getLikeBooks(idUser: number): Observable<any> {
     return this.http.get<any>(`${this.urlGetLikeBooks}/${idUser}`);
+  }
+
+  deleteLikeBooks(userId: number, bookId: number): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
+
+    return this.http.delete(`${this.urlDeleteLikeBook}/${userId}/${bookId}`, { headers }).pipe(
+      catchError((error: any) => {
+        console.error('Mensaje de error:', error);
+        return throwError(() => new Error(error.error?.message || 'Error para añadir libro en favorito.'));
+      })
+    );
   }
 
 }

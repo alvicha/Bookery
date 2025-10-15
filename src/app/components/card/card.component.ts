@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ResponseService } from '../../services/response.service';
 import { UserInfo } from '../../models/users.interface';
 import { NgClass } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-card',
@@ -38,6 +39,18 @@ export class CardComponent implements OnInit {
       if (!selectedFavourite) {
         this.service.addLikeBook(Number(this.userData?.id), idBook).subscribe({
           error: (err) => console.error('Error al añadir libro en favoritos:', err)
+        });
+      } else {
+        this.service.deleteLikeBooks(Number(this.userData?.id), idBook).subscribe({
+          next: () => {
+            Swal.fire({
+              title: "¡Eliminado!",
+              text: "Libro eliminado de favoritos",
+              icon: "success",
+              confirmButtonText: 'Aceptar'
+            });
+          },
+          error: (err) => console.error('Error al eliminar libro en favoritos:', err)
         });
       }
     });
