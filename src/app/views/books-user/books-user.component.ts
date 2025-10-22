@@ -29,6 +29,7 @@ export class BooksUserComponent implements OnInit {
   bookings: Booking[] = [];
   activeTab = 0;
   dateString: string = "";
+  favouriteBooks: BookInfo[] = [];
 
   tabs = [
     { value: 0, label: 'Mis pedidos', icon: 'bi bi-bag' },
@@ -44,6 +45,7 @@ export class BooksUserComponent implements OnInit {
     }
     this.listBooksApi();
     this.showAllBookings();
+    this.listFavouriteBooks();
 
     this.responsiveOptions = [
       {
@@ -84,6 +86,12 @@ export class BooksUserComponent implements OnInit {
 
   onShowBookSelected(idBook: number): void {
     this.router.navigate(['/showInfoBook', idBook]);
+  }
+
+  listFavouriteBooks(): void {
+    this.service.getLikeBooks(Number(this.userData?.id)).subscribe((response) => {
+      this.favouriteBooks = response.favourites;
+    });
   }
 
   getSeverity(status: string): string {

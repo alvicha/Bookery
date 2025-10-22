@@ -2,15 +2,14 @@
     <main class="main-content">
         <app-carousel></app-carousel>
 
+
+        @if (testIconArrow) {
         <div style="text-align: center;">
-            <a href="#aboutMe" class="scroll-down-button">
-                @if (testIconArrow) {
+            <a href="#aboutMe" class="scroll-down-button" (click)="onClickArrow($event)">
                 <i class="bi bi-arrow-down" style="font-size: 2rem;"></i>
-                } @else {
-                <i class="bi bi-arrow-up" style="font-size: 2rem;"></i>
-                }
             </a>
         </div>
+        }
 
         <section id="aboutMe" class="about-me-section py-5">
             <div class="container-fluid">

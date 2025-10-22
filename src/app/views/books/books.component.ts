@@ -4,6 +4,7 @@ import { Categories } from '../../models/categories.interface';
 import { BookInfo } from '../../models/books.interface';
 import { CardComponent } from '../../components/card/card.component';
 import { SearchService } from '../../services/search.service';
+import { UserInfo } from '../../models/users.interface';
 
 @Component({
   selector: 'app-books',
@@ -19,8 +20,15 @@ export class BooksComponent implements OnInit {
   urlCategoriesApi: string = "http://localhost:8000/api/showCategories";
   urlBooksByCategoryApi: string = "http://localhost:8000/api/listBookByCategory";
   urlBooksApi: string = "http://localhost:8000/api/showBooks";
+  userData?: UserInfo;
 
   ngOnInit(): void {
+    const userDataStorage = localStorage.getItem('userData');
+
+    if (userDataStorage) {
+      this.userData = JSON.parse(userDataStorage);
+    }
+
     this.listCategoriesApi();
     this.listBooksApi();
   }
@@ -28,9 +36,18 @@ export class BooksComponent implements OnInit {
   filterBooksByCategory(idCategory: number) {
     this.selectedIdCategory = idCategory;
 
-    this.service.getResponseBooks(`${this.urlBooksByCategoryApi}/${this.selectedIdCategory}`).subscribe((response) => {
-      this.filteredBooks = response.dataBooks;
-    })
+    if (this.userData) {
+      this.service.getLikeBooks(Number(this.userData?.id)).subscribe((response) => {
+        const favouritesList = response.favourites.map((fav: any) => fav.id);
+
+        this.service.getResponseBooks(`${this.urlBooksByCategoryApi}/${this.selectedIdCategory}`).subscribe((response) => {
+          this.filteredBooks = response.dataBooks.map((book: BookInfo) => ({
+            ...book,
+            favourite: favouritesList.includes(book.id)
+          }));
+        })
+      });
+    }
   }
 
   listCategoriesApi() {
@@ -51,5 +68,18 @@ export class BooksComponent implements OnInit {
         })
       }
     });
+
+    if (this.userData) {
+      this.service.getLikeBooks(Number(this.userData?.id)).subscribe((response) => {
+        const favouritesList = response.favourites.map((fav: any) => fav.id);
+
+        this.service.getResponseBooks(this.urlBooksApi).subscribe((response) => {
+          this.filteredBooks = response.results.map((book: BookInfo) => ({
+            ...book,
+            favourite: favouritesList.includes(book.id) // true solo si está en favoritos
+          }));
+        })
+      });
+    }
   }
 }

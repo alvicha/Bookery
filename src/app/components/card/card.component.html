@@ -1,4 +1,4 @@
-<div class="book-card h-100">
+<div class="book-card">
     <div class="container-image">
         <img [src]="book.imagen" [alt]="book.titulo" class="book-image">
     </div>
@@ -12,11 +12,14 @@
                 VER MÁS
             </button>
 
+            @if (userData) {
             <div class="buttons-container">
-                <button class="btn-favorite" (click)="onClickFavouriteBook(book.id)">
-                    <i [ngClass]="!testHearts ? 'bi bi-heart' : 'bi bi-heart-fill'"></i>
+                <button [ngClass]="book.favourite ? 'btn-favorite' : 'btn-no-favorite'"
+                    (click)="onClickFavouriteBook(book)">
+                    <i [ngClass]="book.favourite ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
                 </button>
             </div>
+            }
         </div>
     </div>
 </div>

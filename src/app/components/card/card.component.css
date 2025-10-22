@@ -3,6 +3,7 @@
     border: none;
     border: 1px solid #ddd;
     padding: 15px;
+    max-height: 100%;
 }
 
 .book-card:hover {
@@ -32,6 +33,18 @@
     margin-bottom: 0;
 }
 
+.btn-no-favorite {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 19px;
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+}
+
 .btn-favorite {
     background: none;
     border: none;
@@ -41,6 +54,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    color: #ff4d4d;
 }
 
 .btn-favorite:hover .bi-heart {
@@ -49,6 +63,16 @@
 }
 
 .btn-favorite:focus .bi-heart-fill {
+    color: #ff1a1a;
+    transition: color 0.3s ease;
+}
+
+.btn-no-favorite:hover .bi-heart {
+    color: #ff4d4d;
+    transition: color 0.3s ease;
+}
+
+.btn-no-favorite:focus .bi-heart-fill {
     color: #ff1a1a;
     transition: color 0.3s ease;
 }

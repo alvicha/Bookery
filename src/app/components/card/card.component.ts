@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ResponseService } from '../../services/response.service';
 import { UserInfo } from '../../models/users.interface';
 import { NgClass } from '@angular/common';
-import Swal from 'sweetalert2';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-card',
@@ -13,10 +13,11 @@ import Swal from 'sweetalert2';
   styleUrl: './card.component.css'
 })
 export class CardComponent implements OnInit {
-  public constructor(public service: ResponseService, private router: Router) { }
+  public constructor(public service: ResponseService, private router: Router, private searchService: SearchService) { }
   userData?: UserInfo;
-  testHearts: boolean = false;
   @Input() book!: BookInfo; // el "!" evita error de null
+  urlBooksApi: string = "http://localhost:8000/api/showBooks";
+  books: BookInfo[] = [];
 
   ngOnInit(): void {
     const userDataStorage = localStorage.getItem('userData');
@@ -30,30 +31,17 @@ export class CardComponent implements OnInit {
     this.router.navigate(['/showInfoBook', this.book.id]);
   }
 
-  onClickFavouriteBook(idBook: number): void {
-    this.testHearts = !this.testHearts;
-
-    this.service.getLikeBooks(Number(this.userData?.id)).subscribe((response) => {
-      const selectedFavourite = response.favourites.find((fav: any) => fav.id === idBook);
-
-      if (!selectedFavourite) {
-        this.service.addLikeBook(Number(this.userData?.id), idBook).subscribe({
-          error: (err) => console.error('Error al añadir libro en favoritos:', err)
-        });
-      } else {
-        this.service.deleteLikeBooks(Number(this.userData?.id), idBook).subscribe({
-          next: () => {
-            Swal.fire({
-              title: "¡Eliminado!",
-              text: "Libro eliminado de favoritos",
-              icon: "success",
-              confirmButtonText: 'Aceptar'
-            });
-          },
-          error: (err) => console.error('Error al eliminar libro en favoritos:', err)
-        });
-      }
-    });
+  onClickFavouriteBook(book: BookInfo): void {
+    if (!book.favourite) {
+      this.service.addLikeBook(Number(this.userData?.id), book.id).subscribe({
+        next: () => book.favourite = true,
+        error: (err) => console.error('Error al añadir libro en favoritos:', err)
+      });
+    } else {
+      this.service.deleteLikeBooks(Number(this.userData?.id), book.id).subscribe({
+        next: () => book.favourite = false,
+        error: (err) => console.error('Error al eliminar libro en favoritos:', err)
+      });
+    }
   }
-
 } 

@@ -3,15 +3,16 @@ export interface Books {
 }
 
 export interface BookInfo {
-    id:               number;
-    titulo:           string;
-    autor:            string;
-    editorial:        string;
+    id: number;
+    titulo: string;
+    autor: string;
+    editorial: string;
     anyo_publicacion: string;
-    descripcion:      string;
-    imagen:           string;
-    isbn:             string;
-    num_paginas:      number;
-    idioma:           string;
-    precio:           number;
+    descripcion: string;
+    imagen: string;
+    isbn: string;
+    num_paginas: number;
+    idioma: string;
+    precio: number;
+    favourite?: boolean;
 }

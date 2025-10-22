@@ -12,7 +12,17 @@ export class HomeComponent {
   public constructor(private router: Router) { }
   testIconArrow: boolean = true;
 
-  onClick() {
+  onClick(): void {
     this.router.navigate(['/view-about']);
+  }
+
+  onClickArrow(event: Event): void {
+    event.preventDefault();
+    this.testIconArrow = !this.testIconArrow;
+
+    const aboutSection = document.getElementById('aboutMe');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 }

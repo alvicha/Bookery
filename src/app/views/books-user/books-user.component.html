@@ -20,11 +20,11 @@
             </div>
 
             @if (booksUser.length > 0){
-            <div class="card p-4 mb-5 border-none">
+            <div class="p-4 mb-5 border-none">
                 <p-carousel [value]="booksUser" [numVisible]="booksUser.length" [numScroll]="1" [circular]="true"
                     [responsiveOptions]="responsiveOptions" autoplayInterval="3000">
                     <ng-template pTemplate="item" let-book>
-                        <div class="px-3">
+                        <div class="px-5">
                             <div class="body-carousel" (click)="onShowBookSelected(book.id)">
                                 <div class="image-container">
                                     <img [src]="book.imagen" [alt]="book.titulo" />
@@ -105,8 +105,32 @@
                 </p-table>
             </div>
             } @else if(activeTab === 2) {
-            <!-- Favoritos -->
-            <p>Contenido de favoritos...</p>
+            @if (favouriteBooks.length > 0){
+            <div class="p-5 mb-5 border-none">
+                <p-carousel [value]="favouriteBooks" [numVisible]="favouriteBooks.length" [circular]="true" [numScroll]="1"
+                    [responsiveOptions]="responsiveOptions" autoplayInterval="3000">
+                    <ng-template pTemplate="item" let-book>
+                        <div class="px-5">
+                            <div class="body-carousel" (click)="onShowBookSelected(book.id)">
+                                <div class="image-container">
+                                    <img [src]="book.imagen" [alt]="book.titulo" />
+                                </div>
+                                <div class="book-title">{{ book.titulo }}</div>
+                                <div class="book-autor">{{ book.autor }}</div>
+                                <div class="book-anyo">{{ book.idioma }}</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+            } @else {
+            <div class="message-books">
+                <h3>
+                    <i class="bi bi-dash-circle-fill me-1"></i>
+                    No hay libros favoritos.
+                </h3>
+            </div>
+            }
             }
         </div>
     </div>
